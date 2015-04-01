@@ -4,12 +4,12 @@ import java.util.ArrayList;
 
 public class Entity {
 	private int baseNumber;
-	private String pronounciation;
+	private String name;
 	private ArrayList<String> rules;
 	
 	public Entity(int baseNumber, String pronounciation) {
 		this.baseNumber = baseNumber;
-		this.pronounciation = pronounciation;
+		this.name = pronounciation;
 		rules = new ArrayList<String>();
 	}
 	
@@ -20,14 +20,14 @@ public class Entity {
 	}
 	
 	public String getPronounciation() {
-		return pronounciation;
+		return name;
 	}
 	
-	public void setPronounciation(String pronounciation) {
-		this.pronounciation = pronounciation;
+	public void setName(String name) {
+		this.name = name;
 	}
 	
-	public void setRule(String rule){
+	public void addRule(String rule){
 		rules.add(rule);
 	}
 	
@@ -38,7 +38,7 @@ public class Entity {
 	@Override
 	public String toString() {
 		String s = "";
-		s += pronounciation;
+		s += name;
 		s += "\n";
 		for(String rule : rules){
 			s += rule;

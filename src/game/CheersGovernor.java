@@ -7,23 +7,17 @@ public class CheersGovernor {
 			"THIRTEEN", "FOURTEEN", "FIFTEEN", "SIXTEEN", "SEVENTEEN",
 			"EIGHTEEN", "NINETEEN", "TWENTY", "TWENTYONE" };
 	
-	private static Entity[] theList = new Entity[21];
+	private Entity[] theList = new Entity[LIST_SIZE];
 	
-	public static void main(String[] args) {
+	/**
+	 * Creates a new standard game of cheers governor.
+	 */
+	public CheersGovernor() {
 		for (int i = 0; i < LIST_SIZE; i++) {
 			Entity e = new Entity(i + 1, NAMES[i]);
 			theList[i] = e;
 		}
 		swap(7, 14);
-		swap(1, 20);
-		swap(7, 2);
-		printList();
-	}
-
-	private static void printList() {
-		for (Entity e : theList) {
-			System.out.println(e);
-		}
 	}
 	
 	/**
@@ -31,7 +25,7 @@ public class CheersGovernor {
 	 * @param a
 	 * @param b
 	 */
-	private static void swap(int a, int b){
+	public void swap(int a, int b){
 		Entity entityA = null;
 		Entity entityB = null;
 		int indexA = -1;
@@ -48,5 +42,40 @@ public class CheersGovernor {
 		}
 		theList[indexA] = entityB;
 		theList[indexB] = entityA;
+	}
+	
+	/**
+	 * Add rule: change the name of an element.
+	 * @param baseNumber the number to 
+	 * @param name
+	 */
+	public void rename(int baseNumber, String name) {
+		for (Entity e : theList){
+			if (e.getBaseNumber() == baseNumber)
+				e.setName(name);
+		}
+	}
+	
+	/**
+	 * Add rule: Miscellaneous rule
+	 * @return
+	 */
+	public void miscRule(int baseNumber, String rule){
+		for (Entity e : theList){
+			if(e.getBaseNumber() == baseNumber)
+				e.addRule(rule);
+		}
+	}
+	
+	public Entity[] getTheList() {
+		return theList;
+	}
+	
+	public String listString() {
+		String s = "";
+		for(Entity e: theList){
+			s += e;
+		}
+		return s;
 	}
 }
